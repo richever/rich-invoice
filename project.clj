@@ -11,7 +11,8 @@
                         :incremental false
                         :compiler {
                                    :output-to "js/app.js"
-                                   :optimizations :whitespace
+                                   :externs ["vendor/bootstrap/js/bootstrap.min.js"]
+                                   :optimizations :advanced
                                    :warnings true
                                    :pretty-print true}}]})
 
