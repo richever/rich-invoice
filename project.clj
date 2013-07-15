@@ -7,7 +7,7 @@
                  [node-webkit-cljs "0.1.4"]
                  ]
   :plugins [[lein-cljsbuild "0.3.2"]]
-  :cljsbuild {:builds [{:source-paths ["src"]
+  :cljsbuild {:builds [{:source-paths ["cljs"]
                         :incremental false
                         :compiler {
                                    :output-to "js/app.js"

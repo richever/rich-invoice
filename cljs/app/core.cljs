@@ -1,4 +1,4 @@
-(ns nwcljs.core
+(ns app.core
   (:require [node-webkit.core :as nw]))
 
 (nw/tray! {:title "My App"
