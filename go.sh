@@ -1,2 +1,4 @@
 lein cljsbuild once
-open -n -a node-webkit "/Volumes/CAT_Archive_1of2/Users/gzmask/projects/nwcljs"
+zip -r ../${PWD##*/}.nw *
+mv ../${PWD##*/}.nw ./
+open -n -a node-webkit ${PWD##*/}.nw

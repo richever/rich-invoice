@@ -5,6 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [node-webkit-cljs "0.1.4"]
+                 [enfocus "1.0.1"]
                  ]
   :plugins [[lein-cljsbuild "0.3.2"]]
   :cljsbuild {:builds [{:source-paths ["cljs"]
@@ -15,4 +16,3 @@
                                    :optimizations :advanced
                                    :warnings true
                                    :pretty-print true}}]})
-

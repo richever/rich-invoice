@@ -1,0 +1,11 @@
+body {
+  background-color: #1A1E24;
+  color: #FFF;
+  font-size: 20px;
+}
+
+div.top_bar {
+  height: 4px;
+  width: 16%;
+  float: left;
+}
