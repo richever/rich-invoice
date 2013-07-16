@@ -9,3 +9,19 @@ div.top_bar {
   width: 16%;
   float: left;
 }
+
+div.nav-bar {
+    height: 80px;
+    padding: 20px 10px 20px 10px;
+    background-color: #1A1E24;
+    background-image: url('img/richever_logo.png');
+    background-position: 45% 130px;
+    background-repeat: no-repeat;
+    transition: height 1s ease, background-color 1s ease;
+}
+
+div.nav-bar:hover {
+    height: 200px;
+    background-color: #000;
+}
+                   
