@@ -1,8 +1,6 @@
 (ns app.core
   (:require [node-webkit.core :as nw]
-            [enfocus.core :as ef]
-            [enfocus.events :as events]
-            [enfocus.effects :as effects])
+            [enfocus.core :as ef])
   (:require-macros [enfocus.macros :as em]))
 
 (nw/tray! {:title "My App"
@@ -19,6 +17,6 @@
 
 (defn start []
   (ef/at js/document
-         ["body"] (ef/content "Hello world!")))
+         ["#container"] (ef/content "Hello world!")))
 
 (start)
