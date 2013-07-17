@@ -2,6 +2,10 @@
 
 this is my node-website clojurescirpt template
 
+## Dev
+
+lein with-profile dev ...
+
 ## Usage
 
 run go.sh

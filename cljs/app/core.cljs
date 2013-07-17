@@ -2,7 +2,10 @@
   (:require [node-webkit.core :as nw]
             [enfocus.core :as ef]
             [enfocus.events :as event]
-            [enfocus.effects :as effect])
+            [enfocus.effects :as effect]
+            [crate.core :as crate])
+  (:use [app.invoices :only [invoices]])
+  (:use-macros [crate.def-macros :only [defpartial]])
   (:require-macros [enfocus.macros :as em]))
 
 (nw/tray! {:title "My App"
@@ -13,19 +16,9 @@
 
 (.on (nw/window) "close" #(.hide (nw/windows)))
 
-(def db (js/PouchDB. "richdb"))
-
-(defn addInvoice []
-  (let [invoice (js-obj "_id" (.toISOString (js/Date.))
-                        "price" 10.01)]
-   (.put db invoice (fn [err result] (if-not err
-                                       (.log js/console "Successfully posted an invoice!")
-                                       (.log js/console (str "Failed:" err)))))))
-(addInvoice)
-
 (defn home_pg []
   (ef/at js/document
-         ["#container"] (ef/content "Hello world!")))
+         ["#container"] (ef/content (invoices))))
 
 
 (em/defaction clicked [msg]
