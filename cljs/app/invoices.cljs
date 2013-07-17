@@ -22,14 +22,16 @@
             (fn [err doc] (if-not err
                             (.log js/console (.-rows doc))
                             (.log js/console err)))))
-(showInvoices)
+;(showInvoices)
 
-(.query db (js-obj "map" (fn [doc] (do (js/emit (.-price doc) false)
-                         (.log js/console "nimei!"))))
-        (js-obj "reduce" false)
-        (fn [err results] (if-not err
-                            (.log js/console results))))
+(def invoices_row (.query db 
+                           (js-obj "map" (fn [doc] (js/emit (.-price doc) [:div.row-fluid [:div.span2 (.-price doc)] [:div.span4 (.-_id doc)]])) 
+                                   "reduce" false) 
+                           (fn [err results] (if-not err (.log js/console results)))))
 
 
 (defpartial invoices []
-  [:div "a list of invoices"])
+  [:div "yo"])
+
+(defpartial invoices2 []
+  (map (fn [row] (get row :value)) (get invoices_rows :rows)))
