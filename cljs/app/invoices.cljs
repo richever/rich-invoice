@@ -9,7 +9,7 @@
 (def db (js/PouchDB. "richdb"))
 
 (defn addInvoice []
-  (let [invoice (js-obj "_id" (.toISOString (js/Date.))
+  (let [invoice (js-obj "_id" (.toISOString (js/Date.)) 
                         "price" 10.01)]
    (.put db invoice (fn [err result] (if-not err
                                        (.log js/console "Successfully posted an invoice!")
@@ -23,6 +23,13 @@
                             (.log js/console (.-rows doc))
                             (.log js/console err)))))
 (showInvoices)
+
+(.query db (js-obj "map" (fn [doc] (do (js/emit (.-price doc) false)
+                         (.log js/console "nimei!"))))
+        (js-obj "reduce" false)
+        (fn [err results] (if-not err
+                            (.log js/console results))))
+
 
 (defpartial invoices []
   [:div "a list of invoices"])

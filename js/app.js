@@ -36872,6 +36872,16 @@ app.invoices.showInvoices = function showInvoices() {
   })
 };
 app.invoices.showInvoices.call(null);
+app.invoices.db.query({"map":function(doc) {
+  emit(doc.price, false);
+  return console.log("nimei!")
+}}, {"reduce":false}, function(err, results) {
+  if(cljs.core.not.call(null, err)) {
+    return console.log(results)
+  }else {
+    return null
+  }
+});
 var group__4226__auto___4245 = cljs.core.swap_BANG_.call(null, crate.core.group_id, cljs.core.inc);
 app.invoices.invoices = function invoices() {
   var elem__4227__auto__ = crate.core.html.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0:div", "a list of invoices"], true));
