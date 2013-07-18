@@ -3,9 +3,7 @@
             [enfocus.core :as ef]
             [enfocus.events :as event]
             [enfocus.effects :as effect]
-            [crate.core :as crate])
-  (:use [app.invoices :only [invoices]])
-  (:use-macros [crate.def-macros :only [defpartial]])
+            [app.invoices :as invoice])
   (:require-macros [enfocus.macros :as em]))
 
 (nw/tray! {:title "My App"
@@ -16,20 +14,16 @@
 
 (.on (nw/window) "close" #(.hide (nw/windows)))
 
-(defn home_pg []
-  (ef/at js/document
-         ["#container"] (ef/content (invoices))))
-
-
 (em/defaction clicked [msg]
   ["#container"] (ef/content msg))
 
 (em/defaction bn_setup []
-  ["#bn1"] (event/listen :click #(clicked "button 1 has been clicked."))
-  ["#bn2"] (event/listen :click #(clicked "button 2 has been clicked."))
+  ["#bn1"] (event/listen :click invoice/showInvoices)
+  ["#bn2"] (event/listen :click invoice/createInvoice)
   ["#bn3"] (event/listen :click #(clicked "button 3 has been clicked."))
-  ["#bn4"] (event/listen :click #(clicked "button 4 has been clicked.")))
+  ["#bn4"] (event/listen :click #(clicked "button 4 has been clicked."))
+  ["#add_invoice"] (event/listen :click invoice/addInvoice)
+  ["#reset_invoice"] (event/listen :click invoice/resetInvoice))
 
 (set! (.-onload js/window)
-      (do (home_pg)
-          (bn_setup)))
+      (do (bn_setup)))

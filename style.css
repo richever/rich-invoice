@@ -6,13 +6,13 @@ body {
 
 div.top_bar {
   height: 4px;
-  width: 16%;
+  width: 15%;
   float: left;
 }
 
 div.nav-bar {
     height: 80px;
-    padding: 20px 10px 20px 10px;
+    padding: 20px 0px 20px 0px;
     background-color: #1A1E24;
     background-image: url('img/richever_logo.png');
     background-position: 45% 130px;
