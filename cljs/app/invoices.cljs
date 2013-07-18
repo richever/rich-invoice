@@ -14,7 +14,7 @@
    (.put db invoice (fn [err result] (if-not err
                                        (.log js/console "Successfully posted an invoice!")
                                        (.log js/console (str "Failed:" err)))))))
-(addInvoice)
+;(addInvoice)
 
 (defn showInvoices []
   (.allDocs db (js-obj "include_docs" true
@@ -24,14 +24,15 @@
                             (.log js/console err)))))
 ;(showInvoices)
 
-(def invoices_row (.query db 
-                           (js-obj "map" (fn [doc] (js/emit (.-price doc) [:div.row-fluid [:div.span2 (.-price doc)] [:div.span4 (.-_id doc)]])) 
-                                   "reduce" false) 
-                           (fn [err results] (if-not err (.log js/console results)))))
+(.query db
+        (js-obj "map" (fn [doc] (js/emit (.-price doc) [:div.row-fluid [:div.span2 (.-price doc)] [:div.span4 (.-_id doc)]]))
+                "reduce" false)
+        (fn [err results]
+          (if-not err
+            (doseq [result (.-rows results)]
+              ;(.log js/console (crate/html (.-value result)))))))
+              (ef/at js/document ["#container"] (ef/after (crate/html (.-value result))))))))
 
 
 (defpartial invoices []
   [:div "yo"])
-
-(defpartial invoices2 []
-  (map (fn [row] (get row :value)) (get invoices_rows :rows)))
