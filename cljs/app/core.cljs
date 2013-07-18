@@ -21,9 +21,7 @@
   ["#bn1"] (event/listen :click invoice/showInvoices)
   ["#bn2"] (event/listen :click invoice/createInvoice)
   ["#bn3"] (event/listen :click #(clicked "button 3 has been clicked."))
-  ["#bn4"] (event/listen :click #(clicked "button 4 has been clicked."))
-  ["#add_invoice"] (event/listen :click invoice/addInvoice)
-  ["#reset_invoice"] (event/listen :click invoice/resetInvoice))
+  ["#bn4"] (event/listen :click #(clicked "button 4 has been clicked.")))
 
 (set! (.-onload js/window)
       (do (bn_setup)))

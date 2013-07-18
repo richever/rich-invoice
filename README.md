@@ -1,10 +1,10 @@
-# nwcljs
+# rich invoice
 
-this is my node-website clojurescirpt template
+Richever invoice app
 
 ## Dev
 
-lein with-profile dev ...
+sh dev.sh
 
 ## Usage
 
@@ -13,5 +13,3 @@ run go.sh
 ## License
 
 Copyright © 2013 gzmask
-
-Distributed under the Eclipse Public License, the same as Clojure.

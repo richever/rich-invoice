@@ -34840,15 +34840,10 @@ goog.require("cljs.core");
 goog.require("enfocus.effects");
 goog.require("enfocus.events");
 goog.require("enfocus.core");
-app.invoices.createInvoice = function createInvoice() {
-  return enfocus.core.at.call(null, document, cljs.core.PersistentVector.fromArray(["#container"], true), enfocus.core.content.call(null, enfocus.core.html.call(null, cljs.core.list.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2.offset2", "Item name:"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:input#itemname", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:type", "text"], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", 
-  cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2.offset2", "Item quantity:"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:input#quantity", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:type", "text"], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2.offset2", "Unit price:"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:input#unitprice", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:type", 
-  "text"], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2.offset2", "Total price:"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:input#totalprice", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:type", "text"], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2.offset2", "Comments:"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:input#comment", 
-  cljs.core.PersistentArrayMap.fromArray(["\ufdd0:type", "text"], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div#add_invoice.span2.offset2", "Create"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div#reset_invoice.span2", "Reset"], true)], true)))))
-};
 app.invoices.addInvoice = function addInvoice() {
   var db = new PouchDB("richdb");
-  var invoice = {"_id":(new Date).toISOString(), "price":10.01};
+  var inputs = enfocus.core.from.call(null, document, "\ufdd0:itemname", cljs.core.PersistentVector.fromArray(["#itemname"], true), enfocus.core.get_prop.call(null, "\ufdd0:value"), "\ufdd0:totalprice", cljs.core.PersistentVector.fromArray(["#totalprice"], true), enfocus.core.get_prop.call(null, "\ufdd0:value"));
+  var invoice = {"_id":(new Date).toISOString(), "itemname":(new cljs.core.Keyword("\ufdd0:itemname")).call(null, inputs), "totalprice":(new cljs.core.Keyword("\ufdd0:totalprice")).call(null, inputs)};
   return db.put(invoice, function(err, result) {
     if(cljs.core.not.call(null, err)) {
       return console.log("Successfully posted an invoice!")
@@ -34858,13 +34853,24 @@ app.invoices.addInvoice = function addInvoice() {
   })
 };
 app.invoices.resetInvoice = function resetInvoice() {
-  return null
+  return enfocus.core.at.call(null, document, cljs.core.PersistentVector.fromArray(["#quantity"], true), enfocus.core.set_attr.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#unitprice"], true), enfocus.core.set_attr.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#totalprice"], true), enfocus.core.set_attr.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#comment"], true), enfocus.core.set_attr.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#itemname"], 
+  true), enfocus.core.set_attr.call(null, "\ufdd0:value", ""))
+};
+app.invoices.bn_events = function bn_events() {
+  return enfocus.core.at.call(null, document, cljs.core.PersistentVector.fromArray(["#add_invoice"], true), enfocus.events.listen.call(null, "\ufdd0:click", app.invoices.addInvoice), cljs.core.PersistentVector.fromArray(["#reset_invoice"], true), enfocus.events.listen.call(null, "\ufdd0:click", app.invoices.resetInvoice))
+};
+app.invoices.createInvoice = function createInvoice() {
+  enfocus.core.at.call(null, document, cljs.core.PersistentVector.fromArray(["#container"], true), enfocus.core.content.call(null, enfocus.core.html.call(null, cljs.core.list.call(null, cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2.offset2", "Item name:"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:input#itemname", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:type", "text"], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", 
+  cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2.offset2", "Item quantity:"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:input#quantity", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:type", "text"], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2.offset2", "Unit price:"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:input#unitprice", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:type", 
+  "text"], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2.offset2", "Total price:"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:input#totalprice", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:type", "text"], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2.offset2", "Comments:"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:input#comment", 
+  cljs.core.PersistentArrayMap.fromArray(["\ufdd0:type", "text"], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div#add_invoice.span2.offset2", "Create"], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div#reset_invoice.span2", "Reset"], true)], true)))));
+  return app.invoices.bn_events.call(null)
 };
 app.invoices.showInvoices = function showInvoices() {
   var db = new PouchDB("richdb");
   enfocus.core.at.call(null, document, cljs.core.PersistentVector.fromArray(["#container"], true), enfocus.core.content.call(null), cljs.core.PersistentVector.fromArray(["\ufdd0:h2", "invoices:"], true));
   return db.query({"map":function(doc) {
-    return emit(doc.price, cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2", doc.price], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.span4", doc._id], true)], true))
+    return emit(doc._id, cljs.core.PersistentVector.fromArray(["\ufdd0:div.row-fluid", cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2", doc.itemname], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2", doc.totalprice], true), cljs.core.PersistentVector.fromArray(["\ufdd0:div.span2", doc._id], true)], true))
   }, "reduce":false}, function(err, results) {
     if(cljs.core.not.call(null, err)) {
       var seq__4053 = cljs.core.seq.call(null, results.rows);
@@ -35051,6 +35057,6 @@ app.core.bn_setup = function bn_setup() {
     return app.core.clicked.call(null, "button 3 has been clicked.")
   }), cljs.core.PersistentVector.fromArray(["#bn4"], true), enfocus.events.listen.call(null, "\ufdd0:click", function() {
     return app.core.clicked.call(null, "button 4 has been clicked.")
-  }), cljs.core.PersistentVector.fromArray(["#add_invoice"], true), enfocus.events.listen.call(null, "\ufdd0:click", app.invoices.addInvoice), cljs.core.PersistentVector.fromArray(["#reset_invoice"], true), enfocus.events.listen.call(null, "\ufdd0:click", app.invoices.resetInvoice))
+  }))
 };
 window.onload = app.core.bn_setup.call(null);
