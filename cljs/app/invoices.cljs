@@ -18,11 +18,11 @@
 
 (defn resetInvoice []
   (ef/at js/document 
-         ["#quantity"] (ef/set-attr :value "")
-         ["#unitprice"] (ef/set-attr :value "")
-         ["#totalprice"] (ef/set-attr :value "")
-         ["#comment"] (ef/set-attr :value "")
-         ["#itemname"] (ef/set-attr :value "")))
+         ["#quantity"] (ef/set-prop :value "")
+         ["#unitprice"] (ef/set-prop :value "")
+         ["#totalprice"] (ef/set-prop :value "")
+         ["#comment"] (ef/set-prop :value "")
+         ["#itemname"] (ef/set-prop :value "")))
 
 (em/defaction bn_events []
   ["#add_invoice"] (event/listen :click addInvoice)
@@ -50,5 +50,4 @@
             (if-not err
               (doseq [result (.-rows results)]
                 (ef/at js/document ["#container"] (ef/append (ef/html (.-value result)))))))))))
-
 

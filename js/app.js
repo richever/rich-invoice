@@ -34853,8 +34853,8 @@ app.invoices.addInvoice = function addInvoice() {
   })
 };
 app.invoices.resetInvoice = function resetInvoice() {
-  return enfocus.core.at.call(null, document, cljs.core.PersistentVector.fromArray(["#quantity"], true), enfocus.core.set_attr.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#unitprice"], true), enfocus.core.set_attr.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#totalprice"], true), enfocus.core.set_attr.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#comment"], true), enfocus.core.set_attr.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#itemname"], 
-  true), enfocus.core.set_attr.call(null, "\ufdd0:value", ""))
+  return enfocus.core.at.call(null, document, cljs.core.PersistentVector.fromArray(["#quantity"], true), enfocus.core.set_prop.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#unitprice"], true), enfocus.core.set_prop.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#totalprice"], true), enfocus.core.set_prop.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#comment"], true), enfocus.core.set_prop.call(null, "\ufdd0:value", ""), cljs.core.PersistentVector.fromArray(["#itemname"], 
+  true), enfocus.core.set_prop.call(null, "\ufdd0:value", ""))
 };
 app.invoices.bn_events = function bn_events() {
   return enfocus.core.at.call(null, document, cljs.core.PersistentVector.fromArray(["#add_invoice"], true), enfocus.events.listen.call(null, "\ufdd0:click", app.invoices.addInvoice), cljs.core.PersistentVector.fromArray(["#reset_invoice"], true), enfocus.events.listen.call(null, "\ufdd0:click", app.invoices.resetInvoice))
