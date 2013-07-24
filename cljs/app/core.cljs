@@ -6,7 +6,7 @@
             [app.invoices :as invoice])
   (:require-macros [enfocus.macros :as em]))
 
-(nw/tray! {:title "My App"
+(nw/tray! {:title "Rich Invoice"
            :icon "img/icon.png"
            :menu (nw/menu [{:label "Show..." :click #(.show (nw/window))}
                            {:type "separator"}

@@ -54,7 +54,11 @@
 
 (defn showInvoices []
   (let [db (js/PouchDB. "richdb")]
-  (do (ef/at js/document ["#container"] (ef/content) [:h2 "invoices:"])
+  (do (ef/at js/document ["#container"] (ef/content) [:h2 "invoices:"]) 
+      (ef/at js/document ["#container"] (ef/append) [:div.row-fluid 
+                                                        [:div.span2 "Item name"] 
+                                                        [:div.span2 "Item price"] 
+                                                        [:div.span2 "delete"]])
       (.query db
           (js-obj "map" (fn [doc] (js/emit (.-_id doc) [:div.row-fluid 
                                                         [:div.span2 (.-itemname doc)] 
